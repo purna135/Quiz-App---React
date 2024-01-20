@@ -33,7 +33,7 @@ export default function Quiz() {
   return (
     <div id="quiz">
       <div id="question">
-        <QuestionTimer timeout={10000} onTimeOut={skipAns} />
+        <QuestionTimer key = {queIdx} timeout={10000} onTimeOut={skipAns} />
         <h2>{QUESTIONS[queIdx].text}</h2>
         <ul id="answers">
           {shuffledAns.map((ans) => (
