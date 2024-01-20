@@ -5,9 +5,7 @@ import quizCompleteLogo from "../assets/quiz-complete.png";
 export default function Quiz() {
   const [userAns, setUserAns] = useState([]);
   const queIdx = userAns.length;
-  const shuffledAns = [...QUESTIONS[queIdx].answers];
-  shuffledAns.sort(() => Math.random() - 0.5);
-  const quizComplete = ans.length === QUESTIONS.length;
+  const quizComplete = userAns.length === QUESTIONS.length;
 
   if (quizComplete) {
     return (
@@ -24,12 +22,15 @@ export default function Quiz() {
     });
   }
 
+  const shuffledAns = [...QUESTIONS[queIdx].answers];
+  shuffledAns.sort(() => Math.random() - 0.5);
+
   return (
     <div id="quiz">
       <div id="question">
         <h2>{QUESTIONS[queIdx].text}</h2>
         <ul id="answers">
-          {QUESTIONS[queIdx].answers.map((ans) => (
+          {shuffledAns.map((ans) => (
             <li key={ans} className="answer">
               <button onClick={() => handleSelectAns(ans)}>{ans}</button>
             </li>
